@@ -69,14 +69,14 @@ posts.forEach(singlePost => {
     container.innerHTML+= `
     <div class="post">
             <div class="post__header">
-                <div class="post-meta">                    
+                <div class="post-meta">
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${singlePost.author.image}" alt="Phil Mangione">                    
+                        <img class="profile-pic" src="${singlePost.author.image}" alt="Phil Mangione">
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${singlePost.author.name}</div>
                         <div class="post-meta__time">${singlePost.created}</div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
             <div class="post__text">Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.</div>
@@ -94,8 +94,34 @@ posts.forEach(singlePost => {
                     <div class="likes__counter">
                         Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
                     </div>
-                </div> 
-            </div>            
+                </div>
+            </div>
         </div>`
 
+});
+
+
+// Cambio colore like button
+
+const likeButton = document.querySelectorAll('.js-like-button');
+
+const postLike = [];
+
+likeButton.forEach ((singleLikeButton, i) => {
+    console.log(singleLikeButton);
+
+    singleLikeButton.addEventListener('click',
+    function (event) {
+        console.log('ok');
+
+        event.preventDefault();
+
+        this.classList.add('like-button--liked');
+
+        // Nuovo Array con id dei post con like
+
+        postLike.push(posts[i].id);
+        console.log(postLike);
+    }
+    );
 });

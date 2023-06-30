@@ -86,22 +86,19 @@ posts.forEach(singlePost => {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button  js-like-button" href="#" data-postid="${singlePost.id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                        Piace a <b id="like-counter-${singlePost.id}" class="js-likes-counter">${singlePost.id}</b> persone
                     </div>
                 </div>
             </div>
         </div>`
 
 });
-
-
-// Cambio colore like button
 
 const likeButton = document.querySelectorAll('.js-like-button');
 
@@ -116,12 +113,22 @@ likeButton.forEach ((singleLikeButton, i) => {
 
         event.preventDefault();
 
-        this.classList.add('like-button--liked');
+        if (!this.classList.contains('like-button--liked ')) {
+            // Cambio colore like button
+            this.classList.add('like-button--liked');
 
-        // Nuovo Array con id dei post con like
+             // Nuovo Array con id dei post con like
+             const postId = parseInt(this.getAttribute('data-postid'));
+            postLike.push(postId);
 
-        postLike.push(posts[i].id);
+            const likeCounter = document.getElementById(`like-counter-${postId}`);
+
+            const likeNumber = likeCounter.innerHTML;
+            likeCounter.innerHTML = likeNumber + 1;
+        }
         console.log(postLike);
-    }
-    );
+    });
+
 });
+
+// Incrementiamo il counter dei like

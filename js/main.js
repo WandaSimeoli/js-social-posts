@@ -121,14 +121,15 @@ likeButton.forEach ((singleLikeButton, i) => {
              const postId = parseInt(this.getAttribute('data-postid'));
             postLike.push(postId);
 
+            // Incrementiamo il counter dei like
+
+
             const likeCounter = document.getElementById(`like-counter-${postId}`);
 
-            const likeNumber = likeCounter.innerHTML;
-            likeCounter.innerHTML = likeNumber + 1;
+            let likeNumber = parseInt(likeCounter.innerHTML);
+            likeCounter.innerHTML = ++likeNumber ;
         }
         console.log(postLike);
     });
 
 });
-
-// Incrementiamo il counter dei like
